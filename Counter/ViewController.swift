@@ -31,11 +31,13 @@ class ViewController: UIViewController {
     var countToChange = 1 //устанавливается значение на которое будет изменяться counter
     var counter = 0 {
         didSet {
+            counterUILabel.text = String(counter)
             if counter - oldValue == countToChange {
                 messages.append("[\(formattedCurrentDate)]: значение изменено на +\(countToChange)\n")
             } else if oldValue - counter == countToChange{
                 messages.append("[\(formattedCurrentDate)]: значение изменено на -\(countToChange)\n")
             }
+            
         }
     }
     
@@ -51,13 +53,11 @@ class ViewController: UIViewController {
     //MARK: - Actions
     @IBAction func increaseCount(_ sender: Any) {
         counter += countToChange
-        counterUILabel.text = String(counter)
     }
     
     @IBAction func reduceCount(_ sender: Any) {
         if counter > 0 {
             counter -= countToChange
-            counterUILabel.text = String(counter)
         } else {
             messages.append("[\(formattedCurrentDate)]: попытка уменьшить значение счётчика ниже 0\n")
         }
@@ -65,7 +65,6 @@ class ViewController: UIViewController {
     
     @IBAction func resetCounter(_ sender: Any) {
         counter = 0
-        counterUILabel.text = String(counter)
         messages.append("[\(formattedCurrentDate)]: значение сброшено\n")
     }
     
