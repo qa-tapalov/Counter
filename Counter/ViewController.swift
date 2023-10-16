@@ -32,9 +32,9 @@ class ViewController: UIViewController {
     var counter = 0 {
         didSet {
             counterUILabel.text = String(counter)
-            if counter - oldValue == countToChange {
+            if counter > oldValue {
                 messages.append("[\(formattedCurrentDate)]: значение изменено на +\(countToChange)\n")
-            } else if oldValue - counter == countToChange{
+            } else if oldValue > counter && reduceCountButton.isTouchInside{
                 messages.append("[\(formattedCurrentDate)]: значение изменено на -\(countToChange)\n")
             }
             
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         } else {
             messages.append("[\(formattedCurrentDate)]: попытка уменьшить значение счётчика ниже 0\n")
         }
-         }
+    }
     
     @IBAction func resetCounter(_ sender: Any) {
         counter = 0
