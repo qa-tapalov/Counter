@@ -48,6 +48,7 @@ class ViewController: UIViewController {
         
         counterUILabel.text = String(counter)
         super.viewDidLoad()
+        
     }
     
     //MARK: - Actions
